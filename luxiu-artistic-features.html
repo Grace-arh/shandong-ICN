@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鲁绣 - 艺术特色 | Lu Embroidery - Artistic Features - 山东非物质文化遗产</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Serif:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Serif SC', 'Noto Serif', serif;
+        }
+        
+        .hero-height {
+            height: 3cm;
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="scroll-smooth bg-amber-50 text-gray-800">
+    <!-- Navigation -->
+    <nav id="navigation" class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-amber-800">
+                    <span>山东非遗</span>
+                    <span class="text-sm ml-2 text-gray-600">Shandong ICH</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#overview" class="text-amber-800 hover:text-amber-600 font-medium">#概览 Overview</a>
+                    <div class="relative group">
+                        <a href="index.html#categories" class="text-amber-800 hover:text-amber-600 font-medium">#分类 Categories</a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="luxiu.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">鲁绣 Lu Embroidery</a>
+                            <a href="kite.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">风筝 Kite</a>
+                            <a href="huamo.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">花馍 Flower Steamed Bun</a>
+                            <a href="liuli.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">琉璃 Glass Art</a>
+                            <a href="kaimu.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">楷木雕刻 Camphor Wood Carving</a>
+                        </div>
+                    </div>
+                    <a href="index.html#significance" class="text-amber-800 hover:text-amber-600 font-medium">#意义 Significance</a>
+                    <a href="index.html#contact" class="text-amber-800 hover:text-amber-600 font-medium">#联系我们 Contact Us</a>
+                </div>
+                
+                <!-- Mobile Navigation -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-amber-800 hover:text-amber-600" aria-label="打开菜单" aria-expanded="false">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3">
+                <a href="index.html#overview" class="block text-amber-800 hover:text-amber-600 font-medium">#概览 Overview</a>
+                <div class="pl-4 space-y-2">
+                    <a href="index.html#categories" class="block text-amber-800 hover:text-amber-600 font-medium">#分类 Categories</a>
+                    <a href="luxiu.html" class="block text-gray-700 hover:text-amber-600 pl-2">鲁绣 Lu Embroidery</a>
+                    <a href="kite.html" class="block text-gray-700 hover:text-amber-600 pl-2">风筝 Kite</a>
+                    <a href="huamo.html" class="block text-gray-700 hover:text-amber-600 pl-2">花馍 Flower Steamed Bun</a>
+                    <a href="liuli.html" class="block text-gray-700 hover:text-amber-600 pl-2">琉璃 Glass Art</a>
+                    <a href="kaimu.html" class="block text-gray-700 hover:text-amber-600 pl-2">楷木雕刻 Camphor Wood Carving</a>
+                </div>
+                <a href="index.html#significance" class="block text-amber-800 hover:text-amber-600 font-medium">#意义 Significance</a>
+                <a href="index.html#contact" class="block text-amber-800 hover:text-amber-600 font-medium">#联系我们 Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-height bg-gradient-to-r from-amber-800 to-amber-600 text-white flex items-center justify-center overflow-hidden">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold mb-1 leading-tight">
+                <span>山东非物质文化遗产</span>
+                <br>
+                <span class="text-base md:text-lg font-normal">Shandong Intangible Cultural Heritage</span>
+            </h1>
+            <p class="text-xs md:text-sm opacity-90 leading-tight">
+                传承千年文化，展现齐鲁风采
+                <br>
+                Inheriting Millennium Culture, Showing Qilu Elegance
+            </p>
+        </div>
+    </section>
+
+    <!-- Subpage Navigation -->
+    <section class="bg-amber-50 py-4 border-y border-amber-200">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-2 md:gap-4">
+                <a href="luxiu-history.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    历史渊源
+                    <span class="text-xs block text-amber-600">Historical Origin</span>
+                </a>
+                <a href="luxiu-craftsmanship.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    制作工艺
+                    <span class="text-xs block text-amber-600">Craftsmanship</span>
+                </a>
+                <a href="luxiu-artistic-features.html" class="px-4 py-2 bg-amber-100 rounded-lg shadow-sm hover:bg-amber-200 transition-colors text-amber-800 font-medium">
+                    艺术特色
+                    <span class="text-xs block text-amber-600">Artistic Features</span>
+                </a>
+                <a href="luxiu-representative-products.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    代表品种
+                    <span class="text-xs block text-amber-600">Representative Products</span>
+                </a>
+                <a href="luxiu-cultural-significance.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    文化意义
+                    <span class="text-xs block text-amber-600">Cultural Significance</span>
+                </a>
+                <a href="luxiu-modern-application.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    现代应用
+                    <span class="text-xs block text-amber-600">Modern Application</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Detail Section -->
+    <section id="luxiu-artistic-features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-amber-800 mb-2">
+                    <span>鲁绣 - 艺术特色</span>
+                    <span class="text-xl font-normal ml-2">Lu Embroidery - Artistic Features</span>
+                </h2>
+                <div class="w-20 h-1 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="md:col-span-1">
+                    <img src="images/luxiu/1 (8).jpg" alt="Lu Embroidery Artistic Features" class="w-full rounded-xl shadow-md">
+                    <div class="mt-6 bg-amber-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-amber-800 mb-2">主要特点</h3>
+                        <p class="text-gray-700">粗犷豪放、厚重结实、色彩鲜艳</p>
+                        <p class="text-gray-600 text-sm mt-1">Bold and unconstrained, thick and solid, bright colors</p>
+                    </div>
+                    <div class="mt-4 bg-amber-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-amber-800 mb-2">风格对比</h3>
+                        <p class="text-gray-700">与江南刺绣的细腻柔美形成鲜明对比</p>
+                        <p class="text-gray-600 text-sm mt-1">Sharp contrast with the delicate softness of Jiangnan embroidery</p>
+                    </div>
+                </div>
+                <div class="md:col-span-1">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4">艺术特色</h3>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            鲁绣具有粗犷豪放、厚重结实的艺术风格，与江南刺绣的细腻柔美形成鲜明对比。鲁绣的色彩鲜艳，构图饱满，针法简练而富有表现力。
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            鲁绣的图案题材广泛，包括花卉、鸟兽、人物、山水、历史故事等。其中，以花卉题材最为常见，如牡丹、梅花、菊花等，这些花卉图案通常具有吉祥如意的寓意。
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            鲁绣的另一大特色是使用金线进行装饰，这使得绣品更加华贵典雅。金线的使用不仅增加了绣品的视觉效果，还体现了鲁绣的奢华风格和精湛工艺。
+                        </p>
+                    </div>
+                    <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4">Artistic Features</h3>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            Lu Embroidery has a bold, unconstrained, thick and solid artistic style, which is in sharp contrast to the delicate and soft style of Jiangnan embroidery. Lu Embroidery has bright colors, full composition, and concise but expressive stitches.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            The patterns of Lu Embroidery cover a wide range of themes, including flowers, birds and animals, characters, landscapes, historical stories, etc. Among them, flower themes are the most common, such as peonies, plum blossoms, chrysanthemums, etc. These flower patterns usually have auspicious meanings.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Another major feature of Lu Embroidery is the use of gold thread for decoration, which makes the embroidery more luxurious and elegant. The use of gold thread not only increases the visual effect of the embroidery, but also reflects the luxurious style and exquisite craftsmanship of Lu Embroidery.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Lu Embroidery Main Page -->
+    <section class="py-8 bg-amber-100">
+        <div class="container mx-auto px-4 text-center">
+            <a href="luxiu.html" class="inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i>
+                <span>返回鲁绣主页面</span>
+                <span class="text-sm ml-2">Back to Lu Embroidery Main Page</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-amber-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">
+                    <span>山东非物质文化遗产展示网站</span>
+                    <br>
+                    <span class="text-sm opacity-80">Shandong Intangible Cultural Heritage Exhibition Website</span>
+                </p>
+                <p class="text-xs opacity-70">
+                    © 2024 山东非遗保护中心 All Rights Reserved
+                    <br>
+                    © 2024 Shandong ICH Protection Center All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', (!isOpen).toString());
+        });
+        
+        // Add keyboard support for mobile menu
+        mobileMenuButton.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                mobileMenuButton.click();
+            }
+        });
+    </script>
+</body>
+</html>
