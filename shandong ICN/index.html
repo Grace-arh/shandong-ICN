@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山东非物质文化遗产展示 | Shandong Intangible Cultural Heritage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.8.3/dist/lazyload.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Serif:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Serif SC', 'Noto Serif', serif;
+        }
+        
+        .hero-height {
+            height: 3cm;
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+        
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+        }
+        
+        .map-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #dc2626;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .map-marker:hover {
+            transform: scale(1.5);
+            background-color: #b91c1c;
+        }
+        
+        .blind-box-animation {
+            animation: shake 3s ease-in-out;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30%, 50%, 70%, 90% { transform: rotate(-5deg); }
+            20%, 40%, 60%, 80% { transform: rotate(5deg); }
+        }
+    </style>
+</head>
+<body class="scroll-smooth bg-amber-50 text-gray-800">
+    <!-- Navigation -->
+    <nav id="navigation" class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-amber-800">
+                    <span>山东非遗</span>
+                    <span class="text-sm ml-2 text-gray-600">Shandong ICH</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#overview" class="text-amber-800 hover:text-amber-600 font-medium">#概览 Overview</a>
+                    <div class="relative group">
+                        <a href="#categories" class="text-amber-800 hover:text-amber-600 font-medium">#分类 Categories</a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="luxiu.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">鲁绣 Lu Embroidery</a>
+                            <a href="kite.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">风筝 Kite</a>
+                            <a href="huamo.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">花馍 Flower Steamed Bun</a>
+                            <a href="liuli.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">琉璃 Glass Art</a>
+                            <a href="kaimu.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">楷木雕刻 Camphor Wood Carving</a>
+                        </div>
+                    </div>
+                    <a href="#significance" class="text-amber-800 hover:text-amber-600 font-medium">#意义 Significance</a>
+                    <a href="#contact" class="text-amber-800 hover:text-amber-600 font-medium">#联系我们 Contact Us</a>
+                </div>
+                
+                <!-- Mobile Navigation -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-amber-800 hover:text-amber-600" aria-label="打开菜单" aria-expanded="false">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3">
+                <a href="#overview" class="block text-amber-800 hover:text-amber-600 font-medium">#概览 Overview</a>
+                <div class="pl-4 space-y-2">
+                    <a href="#categories" class="block text-amber-800 hover:text-amber-600 font-medium">#分类 Categories</a>
+                    <a href="luxiu.html" class="block text-gray-700 hover:text-amber-600 pl-2">鲁绣 Lu Embroidery</a>
+                    <a href="kite.html" class="block text-gray-700 hover:text-amber-600 pl-2">风筝 Kite</a>
+                    <a href="huamo.html" class="block text-gray-700 hover:text-amber-600 pl-2">花馍 Flower Steamed Bun</a>
+                    <a href="liuli.html" class="block text-gray-700 hover:text-amber-600 pl-2">琉璃 Glass Art</a>
+                    <a href="kaimu.html" class="block text-gray-700 hover:text-amber-600 pl-2">楷木雕刻 Camphor Wood Carving</a>
+                </div>
+                <a href="#significance" class="block text-amber-800 hover:text-amber-600 font-medium">#意义 Significance</a>
+                <a href="#contact" class="block text-amber-800 hover:text-amber-600 font-medium">#联系我们 Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-height bg-gradient-to-r from-amber-800 to-amber-600 text-white flex items-center justify-center overflow-hidden">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold mb-1 leading-tight">
+                <span>山东非物质文化遗产</span>
+                <br>
+                <span class="text-base md:text-lg font-normal">Shandong Intangible Cultural Heritage</span>
+            </h1>
+            <p class="text-xs md:text-sm opacity-90 leading-tight">
+                传承千年文化，展现齐鲁风采
+                <br>
+                Inheriting Millennium Culture, Showing Qilu Elegance
+            </p>
+        </div>
+    </section>
+
+    <!-- Banner Section -->
+    <section id="banner" class="relative py-6 sm:py-8 md:py-10 overflow-hidden">
+        <div class="container mx-auto px-4">
+            <!-- Main Banner Slider -->
+            <div class="relative overflow-hidden rounded-2xl shadow-xl">
+                <!-- Banner Slides -->
+                <div id="banner-slider" class="relative">
+                    <!-- Slide 1 -->
+                    <div class="banner-slide active">
+                        <div class="flex flex-col-reverse sm:flex-col-reverse md:flex-row items-stretch h-[50vh] md:h-[70vh] lg:h-[80vh]">
+                            <!-- Image Section (60% on desktop) -->
+                            <div class="w-full md:w-3/5 relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-amber-600/10 to-amber-800/10 z-10"></div>
+                                <img src="images/manghe/luxiu.jpg" alt="山东鲁绣 - Shandong Lu Embroidery" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105 lazyload">
+                            </div>
+                            <!-- Text Section (40% on desktop) -->
+                            <div class="w-full md:w-2/5 bg-gradient-to-br from-amber-50/95 to-amber-100/95 p-6 sm:p-8 md:p-12 flex flex-col justify-center">
+                                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-amber-800 mb-4 leading-tight shadow-sm">
+                                    山东鲁绣
+                                    <br>
+                                    <span class="text-sm sm:text-base md:text-lg font-normal text-amber-700/95">Shandong Lu Embroidery</span>
+                                </h2>
+                                <p class="text-gray-700 mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
+                                    鲁绣是山东地区的传统刺绣工艺，历史悠久，起源于春秋战国时期，距今已有2000多年的历史。鲁绣以其精湛的技艺、丰富的题材和独特的风格著称，是中国四大名绣之一。
+                                    <br><br>
+                                    Lu Embroidery is a traditional embroidery craft in Shandong with a history of over 2,000 years, known for its exquisite skills and unique style.
+                                </p>
+                                <a href="#overview" class="inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-gradient-to-r from-amber-500 to-amber-700 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0" aria-label="Discover More">
+                                    <span class="font-medium">Discover More</span>
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="banner-slide hidden">
+                        <div class="flex flex-col-reverse sm:flex-col-reverse md:flex-row items-stretch h-[50vh] md:h-[70vh] lg:h-[80vh]">
+                            <!-- Image Section -->
+                            <div class="w-full md:w-3/5 relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-amber-600/10 to-amber-800/10 z-10"></div>
+                                <img src="images/manghe/fengzheng.jpg" alt="潍坊风筝 - Weifang Kite" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105 lazyload">
+                            </div>
+                            <!-- Text Section -->
+                            <div class="w-full md:w-2/5 bg-gradient-to-br from-amber-50/95 to-amber-100/95 p-6 sm:p-8 md:p-12 flex flex-col justify-center">
+                                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-amber-800 mb-4 leading-tight shadow-sm">
+                                    潍坊风筝
+                                    <br>
+                                    <span class="text-sm sm:text-base md:text-lg font-normal text-amber-700/95">Weifang Kite</span>
+                                </h2>
+                                <p class="text-gray-700 mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
+                                    潍坊风筝是山东潍坊的传统手工艺品，有着悠久的历史。潍坊被誉为"世界风筝之都"，每年举办国际风筝节。潍坊风筝以其造型优美、色彩艳丽、工艺精湛而闻名于世。
+                                    <br><br>
+                                    Weifang Kite is a traditional handicraft known as the "World Kite Capital", famous for its beautiful shape and exquisite craftsmanship.
+                                </p>
+                                <a href="#overview" class="inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-gradient-to-r from-amber-500 to-amber-700 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0" aria-label="Discover More">
+                                    <span class="font-medium">Discover More</span>
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="banner-slide hidden">
+                        <div class="flex flex-col-reverse sm:flex-col-reverse md:flex-row items-stretch h-[50vh] md:h-[70vh] lg:h-[80vh]">
+                            <!-- Image Section -->
+                            <div class="w-full md:w-3/5 relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-amber-600/10 to-amber-800/10 z-10"></div>
+                                <img src="images/manghe/huamo.jpg" alt="山东花馍 - Shandong Flower Steamed Bun" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105 lazyload">
+                            </div>
+                            <!-- Text Section -->
+                            <div class="w-full md:w-2/5 bg-gradient-to-br from-amber-50/95 to-amber-100/95 p-6 sm:p-8 md:p-12 flex flex-col justify-center">
+                                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-amber-800 mb-4 leading-tight shadow-sm">
+                                    山东花馍
+                                    <br>
+                                    <span class="text-sm sm:text-base md:text-lg font-normal text-amber-700/95">Flower Steamed Bun</span>
+                                </h2>
+                                <p class="text-gray-700 mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
+                                    山东花馍是一种传统的面塑艺术，起源于古代的祭祀活动。花馍以面粉为主要原料，通过捏、揉、搓、压等手法，制作成各种造型的面食，常用于节日庆典、婚丧嫁娶等场合。
+                                    <br><br>
+                                    Shandong Flower Steamed Bun is a traditional dough modeling art used in festivals, weddings, and other occasions.
+                                </p>
+                                <a href="#overview" class="inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-gradient-to-r from-amber-500 to-amber-700 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0" aria-label="Discover More">
+                                    <span class="font-medium">Discover More</span>
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4 -->
+                    <div class="banner-slide hidden">
+                        <div class="flex flex-col-reverse sm:flex-col-reverse md:flex-row items-stretch h-[50vh] md:h-[70vh] lg:h-[80vh]">
+                            <!-- Image Section -->
+                            <div class="w-full md:w-3/5 relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-amber-600/10 to-amber-800/10 z-10"></div>
+                                <img src="images/manghe/liuli.jpg" alt="博山琉璃 - Boshan Glass" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105 lazyload">
+                            </div>
+                            <!-- Text Section -->
+                            <div class="w-full md:w-2/5 bg-gradient-to-br from-amber-50/95 to-amber-100/95 p-6 sm:p-8 md:p-12 flex flex-col justify-center">
+                                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-amber-800 mb-4 leading-tight shadow-sm">
+                                    博山琉璃
+                                    <br>
+                                    <span class="text-sm sm:text-base md:text-lg font-normal text-amber-700/95">Boshan Glass</span>
+                                </h2>
+                                <p class="text-gray-700 mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
+                                    博山琉璃是山东淄博博山的传统工艺品，有着悠久的历史。博山琉璃以其色彩艳丽、造型精美而闻名，被誉为"中国琉璃之乡"。
+                                    <br><br>
+                                    Boshan Glass is a traditional handicraft famous for its bright colors and exquisite shapes, known as the "Hometown of Chinese Glass".
+                                </p>
+                                <a href="#overview" class="inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-gradient-to-r from-amber-500 to-amber-700 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0" aria-label="Discover More">
+                                    <span class="font-medium">Discover More</span>
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 5 -->
+                    <div class="banner-slide hidden">
+                        <div class="flex flex-col-reverse sm:flex-col-reverse md:flex-row items-stretch h-[50vh] md:h-[70vh] lg:h-[80vh]">
+                            <!-- Image Section -->
+                            <div class="w-full md:w-3/5 relative overflow-hidden">
+                                <div class="absolute inset-0 bg-gradient-to-r from-amber-600/10 to-amber-800/10 z-10"></div>
+                                <img src="images/manghe/kaimudiaoke.jpg" alt="楷木雕刻 - Camphor Wood Carving" class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-105 lazyload">
+                            </div>
+                            <!-- Text Section -->
+                            <div class="w-full md:w-2/5 bg-gradient-to-br from-amber-50/95 to-amber-100/95 p-6 sm:p-8 md:p-12 flex flex-col justify-center">
+                                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-amber-800 mb-4 leading-tight shadow-sm">
+                                    楷木雕刻
+                                    <br>
+                                    <span class="text-sm sm:text-base md:text-lg font-normal text-amber-700/95">Camphor Wood Carving</span>
+                                </h2>
+                                <p class="text-gray-700 mb-8 text-sm sm:text-base md:text-lg leading-relaxed">
+                                    楷木雕刻是山东曲阜的传统雕刻工艺，起源于春秋时期。楷木雕刻以楷木为原料，通过雕、刻、镂、剔等手法，制作成各种工艺品，具有很高的艺术价值。
+                                    <br><br>
+                                    Camphor Wood Carving is a traditional carving craft with high artistic value, originating from the Spring and Autumn Period.
+                                </p>
+                                <a href="#overview" class="inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-gradient-to-r from-amber-500 to-amber-700 transition-all duration-300 hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0" aria-label="Discover More">
+                                    <span class="font-medium">Discover More</span>
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button id="banner-prev" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/90 hover:bg-white text-amber-800 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-md flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 z-20" aria-label="Previous Slide">
+                    <i class="fas fa-chevron-left text-sm sm:text-base"></i>
+                </button>
+                <button id="banner-next" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white/90 hover:bg-white text-amber-800 w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-md flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:scale-110 active:scale-95 z-20" aria-label="Next Slide">
+                    <i class="fas fa-chevron-right text-sm sm:text-base"></i>
+                </button>
+                
+                <!-- Thumbnail Navigation -->
+                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3 p-2 bg-white/90 rounded-full shadow-md z-20">
+                    <button class="banner-thumb active w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-amber-600 border-2 border-amber-50 transition-all duration-300 hover:scale-125 hover:shadow-md" data-index="0" aria-label="Go to Slide 1"></button>
+                    <button class="banner-thumb w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-amber-300 border-2 border-amber-50 transition-all duration-300 hover:scale-125 hover:shadow-md" data-index="1" aria-label="Go to Slide 2"></button>
+                    <button class="banner-thumb w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-amber-300 border-2 border-amber-50 transition-all duration-300 hover:scale-125 hover:shadow-md" data-index="2" aria-label="Go to Slide 3"></button>
+                    <button class="banner-thumb w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-amber-300 border-2 border-amber-50 transition-all duration-300 hover:scale-125 hover:shadow-md" data-index="3" aria-label="Go to Slide 4"></button>
+                    <button class="banner-thumb w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-amber-300 border-2 border-amber-50 transition-all duration-300 hover:scale-125 hover:shadow-md" data-index="4" aria-label="Go to Slide 5"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-16 bg-amber-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-amber-800 mb-2">#概览 Overview</h2>
+                <div class="w-20 h-1 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-amber-800 mb-4">山东非遗概览</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        山东非物质文化遗产是齐鲁儿女在长期生产生活实践中创造的宝贵精神财富，涵盖了民间文学、传统音乐、传统舞蹈、传统戏剧、曲艺、传统体育、游艺与杂技、传统美术、传统技艺、传统医药、民俗等十大类别。截至目前，山东省拥有国家级非物质文化遗产代表性项目186项，省级非物质文化遗产代表性项目1073项。
+                    </p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <h3 class="text-xl font-bold text-amber-800 mb-4">Shandong ICH Overview</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        Shandong's intangible cultural heritage is a precious spiritual wealth created by the people of Qilu in long-term production and life practices. It covers ten categories including folk literature, traditional music, traditional dance, traditional drama, folk art, traditional sports, entertainment and acrobatics, traditional fine arts, traditional skills, traditional medicine, and folk customs. Up to now, Shandong Province has 186 national-level intangible cultural heritage representative projects and 1,073 provincial-level intangible cultural heritage representative projects.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blind Box Section -->
+    <section id="blind-box" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-amber-800 mb-2">非遗盲盒 | ICH Blind Box</h2>
+                <p class="text-gray-600">
+                    <span>想知道你适合学习什么非遗吗？</span>
+                    <br>
+                    <span class="text-sm">Wonder what ICH you are suitable to learn?</span>
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div id="blind-box-container" class="bg-amber-50 rounded-2xl shadow-lg p-8 text-center cursor-pointer transition-all duration-300 hover:shadow-xl" role="button" tabindex="0" aria-label="点击开启盲盒">
+                    <div class="text-6xl mb-4">🎁</div>
+                    <h3 class="text-2xl font-bold text-amber-800 mb-2">点击开启盲盒</h3>
+                    <p class="text-gray-600">Click to Open the Box</p>
+                </div>
+                
+                <div id="blind-box-result" class="hidden mt-8 bg-white rounded-xl shadow-md p-8">
+                    <div id="result-content">
+                        <!-- Result content will be dynamically inserted here -->
+                    </div>
+                    <button id="reset-blind-box" class="mt-6 px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors">
+                        <span>再开一次</span>
+                        <span class="text-sm ml-2">Open Again</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Map Section -->
+    <section id="categories" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-amber-800 mb-2">#分类地图 Categories Map</h2>
+                <div class="w-20 h-1 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="map-container">
+                <!-- SVG Map of Shandong Province -->
+                <svg width="100%" height="100%" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Larger Shandong Map Outline with Orange Fill -->
+                    <path d="M280,180 Q330,120 430,150 T750,200 Q850,280 820,400 T650,580 Q580,650 400,620 T220,420 Q180,340 220,230 T280,180" 
+                          fill="#f97316" stroke="#991b1b" stroke-width="3" />
+                </svg>
+                
+                <!-- Map Markers with Labels -->
+                <!-- 鲁绣 - 济南 -->
+                <div class="absolute" style="top: 35%; left: 45%; transform: translate(-50%, -50%);">
+                    <div class="map-marker" data-heritage="luxiu" title="鲁绣 - Lu Embroidery" role="button" tabindex="0" aria-label="查看鲁绣详情"></div>
+                    <div class="ml-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-amber-800 shadow-sm">
+                        鲁绣<br>Lu Embroidery
+                    </div>
+                </div>
+                
+                <!-- 风筝 - 潍坊 -->
+                <div class="absolute" style="top: 38%; left: 55%; transform: translate(-50%, -50%);">
+                    <div class="map-marker" data-heritage="kite" title="风筝 - Kite" role="button" tabindex="0" aria-label="查看风筝详情"></div>
+                    <div class="ml-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-amber-800 shadow-sm">
+                        风筝<br>Kite
+                    </div>
+                </div>
+                
+                <!-- 花馍 - 菏泽 -->
+                <div class="absolute" style="top: 65%; left: 35%; transform: translate(-50%, -50%);">
+                    <div class="map-marker" data-heritage="huamo" title="花馍 - Flower Steamed Bun" role="button" tabindex="0" aria-label="查看花馍详情"></div>
+                    <div class="ml-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-amber-800 shadow-sm">
+                        花馍<br>Flower Bun
+                    </div>
+                </div>
+                
+                <!-- 琉璃 - 淄博博山 -->
+                <div class="absolute" style="top: 42%; left: 50%; transform: translate(-50%, -50%);">
+                    <div class="map-marker" data-heritage="liuli" title="琉璃 - Glass Art" role="button" tabindex="0" aria-label="查看琉璃详情"></div>
+                    <div class="ml-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-amber-800 shadow-sm">
+                        琉璃<br>Glass Art
+                    </div>
+                </div>
+                
+                <!-- 楷木雕刻 - 曲阜 -->
+                <div class="absolute" style="top: 52%; left: 48%; transform: translate(-50%, -50%);">
+                    <div class="map-marker" data-heritage="kaimu" title="楷木雕刻 - Camphor Wood Carving" role="button" tabindex="0" aria-label="查看楷木雕刻详情"></div>
+                    <div class="ml-4 bg-white/90 px-2 py-1 rounded text-xs font-medium text-amber-800 shadow-sm">
+                        楷木雕刻<br>Wood Carving
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Significance Section -->
+    <section id="significance" class="py-16 bg-amber-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-amber-800 mb-2">#意义 Significance</h2>
+                <div class="w-20 h-1 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-md p-10">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-2xl font-bold text-amber-800 mb-6">山东非遗的文化意义</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4 text-center">
+                            山东非物质文化遗产是齐鲁文化的重要组成部分，是山东人民智慧的结晶，承载着丰富的历史信息和文化基因。保护和传承山东非物质文化遗产，对于弘扬中华优秀传统文化、增强文化自信、促进文化创新发展具有重要意义。
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-4 text-center">
+                            山东非遗不仅是历史的见证，更是当代文化建设的重要资源。通过对山东非遗的保护和传承，可以促进文化多样性的发展，丰富人们的精神文化生活，增强民族凝聚力和向心力。
+                        </p>
+                        <div class="mt-8 bg-amber-50 p-4 rounded-lg text-center">
+                            <p class="text-amber-800 font-medium">"非遗是中华民族的精神命脉，是涵养社会主义核心价值观的重要源泉。"</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <h3 class="text-2xl font-bold text-amber-800 mb-6">Cultural Significance of Shandong ICH</h3>
+                        <p class="text-gray-700 leading-relaxed mb-4 text-center">
+                            Shandong Intangible Cultural Heritage is an important part of Qilu culture, the crystallization of the wisdom of the people of Shandong, and carries rich historical information and cultural genes. Protecting and inheriting Shandong Intangible Cultural Heritage is of great significance for carrying forward China's excellent traditional culture, enhancing cultural confidence, and promoting cultural innovation and development.
+                        </p>
+                        <p class="text-gray-700 leading-relaxed mb-4 text-center">
+                            Shandong ICH is not only a witness to history, but also an important resource for contemporary cultural construction. Through the protection and inheritance of Shandong ICH, we can promote the development of cultural diversity, enrich people's spiritual and cultural life, and enhance national cohesion and centripetal force.
+                        </p>
+                        <div class="mt-8 bg-amber-50 p-4 rounded-lg text-center">
+                            <p class="text-amber-800 font-medium">"ICH is the spiritual lifeblood of the Chinese nation and an important source for cultivating socialist core values."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-amber-800 mb-2">#联系我们 Contact Us</h2>
+                <div class="w-20 h-1 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-amber-50 p-8 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4">联系信息</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-amber-600 mr-3"></i>
+                                <span>北京市海淀区西三环北路2号北京外国语大学</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-amber-600 mr-3"></i>
+                                <span>15275312408</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-amber-600 mr-3"></i>
+                                <span>yurunzhi0708@163.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 p-8 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-amber-600 mr-3"></i>
+                                <span>Beijing Foreign Studies University, No. 2, Xisanhuan North Road, Haidian District, Beijing</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-amber-600 mr-3"></i>
+                                <span>15275312408</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-amber-600 mr-3"></i>
+                                <span>yurunzhi0708@163.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-amber-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">
+                    <span>山东非物质文化遗产展示网站</span>
+                    <br>
+                    <span class="text-sm opacity-80">Shandong Intangible Cultural Heritage Exhibition Website</span>
+                </p>
+                <p class="text-xs opacity-70">
+                    © 2024 山东非遗保护中心 All Rights Reserved
+                    <br>
+                    © 2024 Shandong ICH Protection Center All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize LazyLoad
+        const lazyLoadInstance = new LazyLoad({
+            elements_selector: ".lazyload",
+            threshold: 50
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', (!isOpen).toString());
+        });
+        
+        // Add keyboard support for mobile menu
+        mobileMenuButton.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                mobileMenuButton.click();
+            }
+        });
+        
+        // Blind box functionality
+        const blindBox = document.getElementById('blind-box-container');
+        const blindBoxResult = document.getElementById('blind-box-result');
+        const resultContent = document.getElementById('result-content');
+        const resetBlindBox = document.getElementById('reset-blind-box');
+        
+        // Add keyboard support for blind box
+        blindBox.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                blindBox.click();
+            }
+        });
+        
+        const heritageItems = [
+            {
+                name: "鲁绣",
+                nameEn: "Lu Embroidery",
+                region: "山东省济南市",
+                regionEn: "Jinan City, Shandong Province",
+                description: "鲁绣是山东地区的传统刺绣工艺，历史悠久，起源于春秋战国时期，距今已有2000多年的历史。鲁绣以其精湛的技艺、丰富的题材和独特的风格著称，是中国四大名绣之一。",
+                descriptionEn: "Lu Embroidery is a traditional embroidery craft in Shandong, with a long history dating back to the Spring and Autumn Period and Warring States Period, more than 2,000 years ago. It is famous for its exquisite skills, rich themes and unique style, and is one of the four famous embroideries in China.",
+                image: "manghe/luxiu.jpg"
+            },
+            {
+                name: "风筝",
+                nameEn: "Kite",
+                region: "山东省潍坊市",
+                regionEn: "Weifang City, Shandong Province",
+                description: "潍坊风筝是山东潍坊的传统手工艺品，有着悠久的历史。潍坊被誉为\"世界风筝之都\"，每年举办国际风筝节。潍坊风筝以其造型优美、色彩艳丽、工艺精湛而闻名于世。",
+                descriptionEn: "Weifang Kite is a traditional handicraft in Weifang, Shandong, with a long history. Weifang is known as the \"World Kite Capital\" and holds an international kite festival every year. Weifang Kite is famous for its beautiful shape, bright colors and exquisite craftsmanship.",
+                image: "manghe/fengzheng.jpg"
+            },
+            {
+                name: "花馍",
+                nameEn: "Flower Steamed Bun",
+                region: "山东省菏泽市",
+                regionEn: "Heze City, Shandong Province",
+                description: "山东花馍是一种传统的面塑艺术，起源于古代的祭祀活动。花馍以面粉为主要原料，通过捏、揉、搓、压等手法，制作成各种造型的面食，常用于节日庆典、婚丧嫁娶等场合。",
+                descriptionEn: "Shandong Flower Steamed Bun is a traditional dough modeling art originating from ancient sacrificial activities. It uses flour as the main raw material, and through kneading, rubbing, pressing and other techniques, it is made into various shapes of pasta, which is often used in festivals, weddings, funerals and other occasions.",
+                image: "manghe/huamo.jpg"
+            },
+            {
+                name: "琉璃",
+                nameEn: "Glass Art",
+                region: "山东省淄博市",
+                regionEn: "Zibo City, Shandong Province",
+                description: "博山琉璃是山东淄博博山的传统工艺品，有着悠久的历史。博山琉璃以其色彩艳丽、造型精美而闻名，被誉为\"中国琉璃之乡\"。",
+                descriptionEn: "Boshan Glass is a traditional handicraft in Boshan, Zibo, Shandong, with a long history. Boshan Glass is famous for its bright colors and exquisite shapes, and is known as the \"Hometown of Chinese Glass\".",
+                image: "manghe/liuli.jpg"
+            },
+            {
+                name: "楷木雕刻",
+                nameEn: "Camphor Wood Carving",
+                region: "山东省曲阜市",
+                regionEn: "Qufu City, Shandong Province",
+                description: "楷木雕刻是山东曲阜的传统雕刻工艺，起源于春秋时期。楷木雕刻以楷木为原料，通过雕、刻、镂、剔等手法，制作成各种工艺品，具有很高的艺术价值。",
+                descriptionEn: "Camphor Wood Carving is a traditional carving craft in Qufu, Shandong, originating from the Spring and Autumn Period. It uses camphor wood as raw material, and through carving, engraving,镂ing, picking and other techniques, it is made into various crafts with high artistic value.",
+                image: "manghe/kaimudiaoke.jpg"
+            }
+        ];
+        
+        blindBox.addEventListener('click', () => {
+            // Add animation
+            blindBox.classList.add('blind-box-animation');
+            
+            // Show result after animation
+            setTimeout(() => {
+                const randomIndex = Math.floor(Math.random() * heritageItems.length);
+                const selectedItem = heritageItems[randomIndex];
+                
+                resultContent.innerHTML = `
+                    <div class="flex flex-col items-center">
+                        <div class="w-full max-w-md mb-6">
+                            <img src="${selectedItem.image}" alt="${selectedItem.name}" class="w-full h-64 object-cover rounded-lg shadow-md">
+                        </div>
+                        <h3 class="text-2xl font-bold text-amber-800 mb-2">
+                            ${selectedItem.name}
+                            <span class="text-lg font-normal ml-2">${selectedItem.nameEn}</span>
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            <span>${selectedItem.region}</span>
+                            <br>
+                            <span class="text-sm">${selectedItem.regionEn}</span>
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                            <div class="text-left">
+                                <h4 class="font-bold text-amber-800 mb-2">介绍</h4>
+                                <p class="text-gray-700">${selectedItem.description}</p>
+                            </div>
+                            <div class="text-left">
+                                <h4 class="font-bold text-amber-800 mb-2">Introduction</h4>
+                                <p class="text-gray-700">${selectedItem.descriptionEn}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                blindBox.classList.remove('blind-box-animation');
+                blindBox.classList.add('hidden');
+                blindBoxResult.classList.remove('hidden');
+            }, 3000);
+        });
+        
+        resetBlindBox.addEventListener('click', () => {
+            blindBoxResult.classList.add('hidden');
+            blindBox.classList.remove('hidden');
+        });
+        
+        // Map marker functionality
+        const mapMarkers = document.querySelectorAll('.map-marker');
+        
+        mapMarkers.forEach(marker => {
+            marker.addEventListener('click', () => {
+                const heritageType = marker.getAttribute('data-heritage');
+                window.location.href = `${heritageType}.html`;
+            });
+            
+            // Add keyboard support for map markers
+            marker.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    marker.click();
+                }
+            });
+        });
+        
+        // Banner slider
+        const bannerSlides = document.querySelectorAll('.banner-slide');
+        const bannerThumbs = document.querySelectorAll('.banner-thumb');
+        const bannerPrev = document.getElementById('banner-prev');
+        const bannerNext = document.getElementById('banner-next');
+        let currentSlide = 0;
+        let slideInterval;
+        
+        // Start auto slideshow
+        function startAutoSlide() {
+            slideInterval = setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 3000); // 3 seconds per slide
+        }
+        
+        // Pause auto slideshow
+        function pauseAutoSlide() {
+            clearInterval(slideInterval);
+        }
+        
+        // Show specific slide with animations
+        function showSlide(index) {
+            // Ensure index is within bounds and supports loop
+            if (index >= bannerSlides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = bannerSlides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+            
+            // Hide all slides with animation
+            bannerSlides.forEach(slide => {
+                slide.classList.remove('active');
+                slide.classList.add('hidden');
+            });
+            
+            // Show current slide with animation
+            const activeSlide = bannerSlides[currentSlide];
+            activeSlide.classList.remove('hidden');
+            
+            // Add animation class for smooth transition
+            setTimeout(() => {
+                activeSlide.classList.add('active');
+            }, 50);
+            
+            // Update thumbnail status
+            bannerThumbs.forEach((thumb, i) => {
+                if (i === currentSlide) {
+                    thumb.classList.add('active');
+                    thumb.classList.remove('bg-amber-300');
+                    thumb.classList.add('bg-amber-600');
+                } else {
+                    thumb.classList.remove('active');
+                    thumb.classList.remove('bg-amber-600');
+                    thumb.classList.add('bg-amber-300');
+                }
+            });
+        }
+        
+        // Event listeners for navigation arrows
+        bannerPrev.addEventListener('click', () => {
+            pauseAutoSlide();
+            showSlide(currentSlide - 1);
+            startAutoSlide();
+        });
+        
+        bannerNext.addEventListener('click', () => {
+            pauseAutoSlide();
+            showSlide(currentSlide + 1);
+            startAutoSlide();
+        });
+        
+        // Event listeners for thumbnails
+        bannerThumbs.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                pauseAutoSlide();
+                const index = parseInt(thumb.getAttribute('data-index'));
+                showSlide(index);
+                startAutoSlide();
+            });
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                pauseAutoSlide();
+                showSlide(currentSlide - 1);
+                startAutoSlide();
+            } else if (e.key === 'ArrowRight') {
+                pauseAutoSlide();
+                showSlide(currentSlide + 1);
+                startAutoSlide();
+            }
+        });
+        
+        // Pause on hover
+        const bannerSlider = document.getElementById('banner-slider');
+        bannerSlider.addEventListener('mouseenter', pauseAutoSlide);
+        bannerSlider.addEventListener('mouseleave', startAutoSlide);
+        
+        // Add CSS for animation
+        const style = document.createElement('style');
+        style.textContent = `
+            .banner-slide {
+                transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+                opacity: 1;
+                transform: translateX(0);
+            }
+            
+            .banner-slide.hidden {
+                opacity: 0;
+                transform: translateX(-10px);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+            }
+            
+            .banner-slide.active {
+                opacity: 1;
+                transform: translateX(0);
+                position: relative;
+            }
+            
+            /* Add smooth transition for all interactive elements */
+            button.banner-thumb,
+            button#banner-prev,
+            button#banner-next,
+            a[aria-label="Discover More"] {
+                transition: all 0.3s ease-in-out;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Initialize slider
+        showSlide(currentSlide);
+        startAutoSlide();
+    </script>
+</body>
+</html>

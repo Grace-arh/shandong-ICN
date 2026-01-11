@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>琉璃 - 著名产品 | Glass Art - Famous Products - 山东非物质文化遗产</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Serif:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Serif SC', 'Noto Serif', serif;
+        }
+        
+        .hero-height {
+            height: 3cm;
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="scroll-smooth bg-amber-50 text-gray-800">
+    <!-- Navigation -->
+    <nav id="navigation" class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-amber-800">
+                    <span>山东非遗</span>
+                    <span class="text-sm ml-2 text-gray-600">Shandong ICH</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#overview" class="text-amber-800 hover:text-amber-600 font-medium">#概览 Overview</a>
+                    <div class="relative group">
+                        <a href="index.html#categories" class="text-amber-800 hover:text-amber-600 font-medium">#分类 Categories</a>
+                        <div class="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                            <a href="luxiu.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">鲁绣 Lu Embroidery</a>
+                            <a href="kite.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">风筝 Kite</a>
+                            <a href="huamo.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">花馍 Flower Steamed Bun</a>
+                            <a href="liuli.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">琉璃 Glass Art</a>
+                            <a href="kaimu.html" class="block px-4 py-2 text-gray-700 hover:bg-amber-100">楷木雕刻 Camphor Wood Carving</a>
+                        </div>
+                    </div>
+                    <a href="index.html#significance" class="text-amber-800 hover:text-amber-600 font-medium">#意义 Significance</a>
+                    <a href="index.html#contact" class="text-amber-800 hover:text-amber-600 font-medium">#联系我们 Contact Us</a>
+                </div>
+                
+                <!-- Mobile Navigation -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-amber-800 hover:text-amber-600" aria-label="打开菜单" aria-expanded="false">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3">
+                <a href="index.html#overview" class="block text-amber-800 hover:text-amber-600 font-medium">#概览 Overview</a>
+                <div class="pl-4 space-y-2">
+                    <a href="index.html#categories" class="block text-amber-800 hover:text-amber-600 font-medium">#分类 Categories</a>
+                    <a href="luxiu.html" class="block text-gray-700 hover:text-amber-600 pl-2">鲁绣 Lu Embroidery</a>
+                    <a href="kite.html" class="block text-gray-700 hover:text-amber-600 pl-2">风筝 Kite</a>
+                    <a href="huamo.html" class="block text-gray-700 hover:text-amber-600 pl-2">花馍 Flower Steamed Bun</a>
+                    <a href="liuli.html" class="block text-gray-700 hover:text-amber-600 pl-2">琉璃 Glass Art</a>
+                    <a href="kaimu.html" class="block text-gray-700 hover:text-amber-600 pl-2">楷木雕刻 Camphor Wood Carving</a>
+                </div>
+                <a href="index.html#significance" class="block text-amber-800 hover:text-amber-600 font-medium">#意义 Significance</a>
+                <a href="index.html#contact" class="block text-amber-800 hover:text-amber-600 font-medium">#联系我们 Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-height bg-gradient-to-r from-amber-800 to-amber-600 text-white flex items-center justify-center overflow-hidden">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-2xl md:text-3xl font-bold mb-1 leading-tight">
+                <span>山东非物质文化遗产</span>
+                <br>
+                <span class="text-base md:text-lg font-normal">Shandong Intangible Cultural Heritage</span>
+            </h1>
+            <p class="text-xs md:text-sm opacity-90 leading-tight">
+                传承千年文化，展现齐鲁风采
+                <br>
+                Inheriting Millennium Culture, Showing Qilu Elegance
+            </p>
+        </div>
+    </section>
+
+    <!-- Subpage Navigation -->
+    <section class="bg-amber-50 py-4 border-y border-amber-200">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center items-center gap-2 md:gap-4">
+                <a href="liuli-history.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    历史渊源
+                    <span class="text-xs block text-amber-600">Historical Origin</span>
+                </a>
+                <a href="liuli-craftsmanship.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    制作工艺
+                    <span class="text-xs block text-amber-600">Craftsmanship</span>
+                </a>
+                <a href="liuli-artistic-features.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    艺术特色
+                    <span class="text-xs block text-amber-600">Artistic Features</span>
+                </a>
+                <a href="liuli-representative-products.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    代表品种
+                    <span class="text-xs block text-amber-600">Representative Products</span>
+                </a>
+                <a href="liuli-cultural-significance.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    文化意义
+                    <span class="text-xs block text-amber-600">Cultural Significance</span>
+                </a>
+                <a href="liuli-famous-products.html" class="px-4 py-2 bg-amber-100 rounded-lg shadow-sm hover:bg-amber-200 transition-colors text-amber-800 font-medium">
+                    著名产品
+                    <span class="text-xs block text-amber-600">Famous Products</span>
+                </a>
+                <a href="liuli-modern-development.html" class="px-4 py-2 bg-white rounded-lg shadow-sm hover:bg-amber-100 transition-colors text-amber-800 font-medium">
+                    现代发展
+                    <span class="text-xs block text-amber-600">Modern Development</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Heritage Detail Section -->
+    <section id="liuli-famous-products" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-amber-800 mb-2">
+                    <span>琉璃 - 著名产品</span>
+                    <span class="text-xl font-normal ml-2">Glass Art - Famous Products</span>
+                </h2>
+                <div class="w-20 h-1 bg-amber-600 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="md:col-span-1">
+                    <img src="images/liuli/1 (4).jpg" alt="Famous Products of Glass Art" class="w-full rounded-xl shadow-md">
+
+                </div>
+                <div class="md:col-span-1">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4">著名产品</h3>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            博山琉璃有许多著名的产品，如琉璃花球、琉璃内画、琉璃花瓶、琉璃摆件等。其中，琉璃内画是博山琉璃的一大特色，它是在琉璃瓶内部进行绘画，技艺精湛，画面精美，被誉为"中华一绝"。
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            琉璃花球也是博山琉璃的代表性产品之一，它是通过多层玻璃液叠加、拉伸、旋转等工艺制作而成，内部呈现出各种美丽的图案，如花卉、山水、人物等。
+                        </p>
+                    </div>
+                    <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold text-amber-800 mb-4">Famous Products</h3>
+                        <p class="text-gray-700 leading-relaxed mb-3">
+                            Boshan Glass has many famous products, such as glass flower balls, glass inner paintings, glass vases, glass ornaments, etc. Among them, glass inner painting is a major feature of Boshan Glass. It is painted inside glass bottles with exquisite skills and beautiful pictures, known as "a unique skill of China".
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Glass flower balls are also one of the representative products of Boshan Glass. They are made through multi-layer glass liquid stacking, stretching, rotating and other processes, and show various beautiful patterns inside, such as flowers, landscapes, figures, etc.
+                        </p>
+                    </div>
+                    <div class="mt-6 bg-amber-50 p-4 rounded-lg">
+                        <h3 class="font-bold text-amber-800 mb-2">代表产品</h3>
+                        <p class="text-gray-700">琉璃花球、琉璃内画</p>
+                        <p class="text-gray-600 text-sm mt-1">Glass Flower Balls, Glass Inner Paintings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Liuli Main Page -->
+    <section class="py-8 bg-amber-100">
+        <div class="container mx-auto px-4 text-center">
+            <a href="liuli.html" class="inline-flex items-center px-6 py-3 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i>
+                <span>返回琉璃主页面</span>
+                <span class="text-sm ml-2">Back to Glass Art Main Page</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-amber-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <p class="mb-2">
+                    <span>山东非物质文化遗产展示网站</span>
+                    <br>
+                    <span class="text-sm opacity-80">Shandong Intangible Cultural Heritage Exhibition Website</span>
+                </p>
+                <p class="text-xs opacity-70">
+                    © 2024 山东非遗保护中心 All Rights Reserved
+                    <br>
+                    © 2024 Shandong ICH Protection Center All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', (!isOpen).toString());
+        });
+        
+        // Add keyboard support for mobile menu
+        mobileMenuButton.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                mobileMenuButton.click();
+            }
+        });
+    </script>
+</body>
+</html>
